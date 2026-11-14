@@ -34,7 +34,7 @@ Nhiệm vụ dự kiến: đề xuất **câu hỏi nghiên cứu** và **hướ
 
 ```text
 README.md, BOI_CANH.md, KET_QUA_E.md, CAU_HOI_MO.md, LIEN_QUAN.md
-b3_baseline/            báo cáo B3 đã khóa + bảng chênh lệch, tổng hợp, ca thắng/thua
+b3_baseline/            B3 đã khóa: báo cáo, code (code/), cấu hình yaml, config + kết quả 12 run (runs/), notebook Kaggle
 thi_nghiem/
   b0_0811/              E0–E14, E20, E21 và so sánh tỉ lệ IR (SegFormer-B0 / proxy; seg/ = phần có train)
   b3_e15/               E15, E15b–E15e: làm hỏng VIS test, chấm bằng 12 model B3 (anh_mau/ = hình mẫu)

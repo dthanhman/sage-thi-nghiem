@@ -1,5 +1,7 @@
 # Kiểm lại SAGE trên FMB bằng SegFormer-B3 (phần "B3")
 
+> **Bản sao trong repo `sage-thi-nghiem`.** Gốc ở repo nhóm `quan14333/xulianh` (`reports/experiments/b3_fmb_seg/`, code `src/segmentation/`). Ở đây code nằm trong [`code/`](code/README.md) (giữ nguyên, đường dẫn mặc định trỏ theo cấu trúc repo nhóm), cấu hình gom ở [`b3_fmb_seg.yaml`](b3_fmb_seg.yaml), cấu hình + kết quả từng run ở `runs/<run_id>/`.
+
 *Cập nhật 14/11/2026 – **bản khóa**, đủ 3 seed (0, 1, 2). Phần chạy B3 đã xong, không chạy thêm.*
 
 ---
@@ -50,7 +52,7 @@ Bài **không công bố code chấm** và **không ghi đủ chi tiết**. Ch�
 | Độ chính xác số | Train và chấm bằng FP16 hỗn hợp (autocast); ảnh SAGE tạo bằng FP32 | ❌ | Vừa GPU T4 |
 | Máy | Kaggle, GPU T4, ~2,5 giờ / mạng; môi trường ghim bằng image Docker – [`environment.json`](environment.json) | | |
 
-**Toàn bộ cấu hình trong một file:** [`configs/experiments/b3_fmb_seg.yaml`](../../../configs/experiments/b3_fmb_seg.yaml) (ảnh đầu vào, train, chấm, máy, nơi lưu checkpoint). Code đã chạy trên Kaggle (dataset `sage-tai-lap`) đã được so với `src/segmentation/`: phần train và chấm giống hệt.
+**Toàn bộ cấu hình trong một file:** [`configs/experiments/b3_fmb_seg.yaml`](b3_fmb_seg.yaml) (ảnh đầu vào, train, chấm, máy, nơi lưu checkpoint). Code đã chạy trên Kaggle (dataset `sage-tai-lap`) đã được so với `src/segmentation/`: phần train và chấm giống hệt.
 
 **Cách tính mIoU (số chính):** bỏ pixel không có nhãn, trung bình trên 13 lớp có mặt trong test (lớp xe đạp không có ảnh test nào). Có tính thêm kiểu SegMiF (15 lớp) để đối chiếu – kết luận không đổi.
 
@@ -220,9 +222,9 @@ Vì kết quả lệch bài, nhóm đã kiểm kỹ trước khi kết luận �
 
 | Cái gì | Ở đâu |
 |---|---|
-| Code (xuất ảnh, train, chấm, tổng hợp, khoảng tin cậy, ca thắng/thua) | [`src/segmentation/`](../../../src/segmentation/README.md) |
-| Danh sách ảnh (split) | [`data/manifests/`](../../../data/manifests/README.md) – đúng 3 file nhóm đang dùng (train 1.045 + dev 175 gộp lại thành 1.220 ảnh train; test 280) |
-| Notebook Kaggle | [`notebooks/man/sage_b3_kaggle.ipynb`](../../../notebooks/man/sage_b3_kaggle.ipynb) – một notebook, chọn `BIEN_THE` và `SEED` ở ô đầu |
+| Code (xuất ảnh, train, chấm, tổng hợp, khoảng tin cậy, ca thắng/thua) | [`src/segmentation/`](code/README.md) |
+| Danh sách ảnh (split) | [`data/manifests/`](https://github.com/quan14333/xulianh/tree/main/data/manifests) – đúng 3 file nhóm đang dùng (train 1.045 + dev 175 gộp lại thành 1.220 ảnh train; test 280) |
+| Notebook Kaggle | [`notebooks/man/sage_b3_kaggle.ipynb`](sage_b3_kaggle.ipynb) – một notebook, chọn `BIEN_THE` và `SEED` ở ô đầu |
 | Kết quả nhỏ của từng run | `runs/<run>/`: `config.json` (cấu hình), `log.csv` (loss theo vòng lặp), `test_ket_qua_last.json` (mIoU 280/273 ảnh), `test_iou_lop_last.csv` (IoU từng lớp) |
 | Bảng tổng hợp | [`tong_hop.csv`](tong_hop.csv), [`tong_hop.txt`](tong_hop.txt) – mọi quy ước mIoU, IoU từng lớp, so với bài |
 | Chênh lệch + khoảng tin cậy | [`so_sanh_b3.txt`](so_sanh_b3.txt) – từng seed, gộp 3 seed, chia tối/vừa/sáng |
@@ -259,4 +261,4 @@ python src/segmentation/so_sanh_b3.py > so_sanh_b3.txt
 
 Đã kiểm 14/11: chạy từ repo ra `tong_hop.txt`, `so_sanh_b3.txt`, `ca_thang_thua.txt` khớp từng dòng với bản gốc.
 
-Train lại một run: chạy notebook Kaggle (GPU T4) hoặc trên máy có GPU – xem [`src/segmentation/README.md`](../../../src/segmentation/README.md).
+Train lại một run: chạy notebook Kaggle (GPU T4) hoặc trên máy có GPU – xem [`src/segmentation/README.md`](code/README.md).
