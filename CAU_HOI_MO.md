@@ -50,4 +50,4 @@
 | **SAM có cần không** | Nếu E17 cho thấy SAM không giúp: thay Teacher bằng nguồn dạy rẻ hơn (mô hình phân đoạn nhẹ) | Bài: −4,7 khi bỏ SAM; chờ E17 | Phụ thuộc kết quả E17 |
 | Thích nghi theo **vùng** (không theo ảnh) | Cổng IR/VIS theo điểm ảnh/vùng | E12: theo ảnh trần nhỏ | E13: SAGE đã chọn IR theo vùng → dư địa có thể nhỏ |
 
-Đã rớt: tăng độ sắc (E1), đổi kích thước train (E9), luật theo độ sáng cấp ảnh (E12), khử nhiễu trước khi ghép (E15e).
+Đã rớt: căn chỉnh IR–VIS / camera lệch (problem A), tăng độ sắc (E1), đổi kích thước train (E9), luật theo độ sáng cấp ảnh (E12), khử nhiễu trước khi ghép (E15e).

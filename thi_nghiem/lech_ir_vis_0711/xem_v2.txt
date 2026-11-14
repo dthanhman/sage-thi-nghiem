@@ -1,0 +1,31 @@
+n 175
+
+[1] Nhãn khớp nguồn nào? đỉnh quét
+vis dinh median dx,dy 0.0 -1.0 |lech| med 2.23606797749979 P90 6.227838204321341 <=1px 27% do nhon 0.338
+ir dinh median dx,dy 0.0 -1.0 |lech| med 2.0 P90 4.123105625617661 <=1px 25% do nhon 0.357
+Tuong quan dinh IR-nhan voi ECC: sx 0.17 sy 0.24; phase: sx -0.11 sy 0.01
+
+[2] Trọng tài nhãn ở d=0: cạnh IR nằm trên biên nhãn (cao hơn = khớp hơn)
+ecc dich theo est: med -1.62%, anh tang 35% | dich NGUOC: med -9.53%, anh tang 11%
+   rieng |dich|>=2px (n=104): theo est med -6.64%, tang 26%; nguoc med -14.32%, tang 9%
+   theo so voi nguoc: anh est>nguoc 71%
+phase dich theo est: med -7.48%, anh tang 21% | dich NGUOC: med -13.51%, anh tang 12%
+   rieng |dich|>=2px (n=143): theo est med -9.65%, tang 14%; nguoc med -16.06%, tang 11%
+   theo so voi nguoc: anh est>nguoc 65%
+
+[3] Nội suy ở d=0, ECC (MS-SSIM tổng so với IR gốc)
+ecc le(subpx) -0.02% | ecc tron px -0.83% | phase tron -1.56% | ecc chuan -0.77%
+
+[4] Đối chứng ghép trung bình, cùng cách chấm IR gốc
+5 TB -2.64% | SAGE so voi IR dua vao +0.10%
+10 TB -4.59% | SAGE so voi IR dua vao +0.24%
+
+[5] Theo khối dev: none d=5 và ecc so voi chinh no
+       n  none_d5  ecc_d5   sang
+khoi                            
+0     33    -3.78   -0.21   93.0
+1     30    -2.32   -0.11  107.0
+2     35    -3.62   -0.26  145.0
+3     40    -1.52   -0.30   81.0
+4     37    -1.49   -0.12  148.0
+bootstrap theo khoi none d5 CI95 [-3.68 -1.51]

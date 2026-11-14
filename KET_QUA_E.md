@@ -8,6 +8,8 @@ model phân đoạn. Tất cả trên **273 ảnh test sạch**. `*` = CI95 khô
 
 | E | Câu hỏi | Mức | Kết luận theo tiêu chí đặt trước |
 |---|---|---|---|
+| Lệch IR–VIS | IR lệch thì SAGE có bị hại riêng (hơn TB) không? | ghép | **Bác bỏ** – giảm như TB |
+| Kiểm checkpoint | Checkpoint SAGE train trên dữ liệu nào? | BN | Rất có thể FMB train |
 | E0 | Bảng nền chỉ số ghép | ghép + proxy | Mốc (SAGE đứng đầu SCD, gần đầu Q_ABF) |
 | E1 | Làm sắc ảnh SAGE (USM) có bù được "bỏ SAM" không? | ghép + proxy | **Không** – làm sắc còn hạ ngữ nghĩa |
 | E2 | SAGE có giúp phân đoạn hơn VIS, TB không? | proxy | Không thấy khác |
@@ -32,6 +34,16 @@ model phân đoạn. Tất cả trên **273 ảnh test sạch**. `*` = CI95 khô
 | E17 | SAM có làm ảnh ghép tốt hơn cho phân đoạn? | B3 | **Đang chạy** |
 
 ---
+
+## Nhóm 0 – Trước khi tìm gap (07–08/11)
+
+**Lệch IR–VIS (problem A)** – `thi_nghiem/lech_ir_vis_0711/`. Dịch IR 0/2/5/10 px (± căn lại phase/ECC), chấm bằng
+chỉ số ghép. SAGE giảm điểm khi lệch 5–10 px nhưng **không nhiều hơn TB** (kiểm lại 635 ảnh train: E(5) MS-SSIM +0,53
+[+0,35; +0,82], đạt ngưỡng bác bỏ). Căn lại tự nó cũng hạ điểm. → Hướng camera lệch bị loại.
+
+**Kiểm checkpoint** – `thi_nghiem/kiem_checkpoint/`. Giải ngược thống kê BatchNorm lớp đầu: E[Y] 0,468 / E[IR] 0,293
+(FMB train 0,465 / 0,309); tỉ lệ phương sai FMB train 0,99 (test 1,19, M³FD 0,79) → checkpoint rất có thể train trên
+FMB train. Giới hạn: BN chỉ phản ánh cuối quá trình train.
 
 ## Nhóm 1 – SAGE có giúp phân đoạn không (B3 là câu trả lời chính)
 
@@ -73,7 +85,7 @@ tốt nhất → checkpoint nhiều khả năng được train trên FMB.
 
 ## Nhóm 3 – SAGE dùng IR thế nào, thích nghi theo cảnh?
 
-**E8** – `e8.txt`. Tương quan giữa độ sáng ảnh và mức ảnh ghép dựa vào VIS: SAGE ρ 0,648, TB ρ 0,654;
+**E8** – `e8.txt` (script không còn, chỉ còn file kết quả). Tương quan giữa độ sáng ảnh và mức ảnh ghép dựa vào VIS: SAGE ρ 0,648, TB ρ 0,654;
 ρ(SAGE) − ρ(TB) = −0,005 [−0,15; +0,16] → **không thích nghi hơn TB** ở cấp ảnh.
 
 **E13** – `seg/e13_vung_ir.py`, `seg/e13.txt`. Ước lượng w = tỉ lệ IR hiệu dụng (Y_ghép − Y_vis ≈ w·(IR − Y_vis))

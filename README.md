@@ -39,6 +39,8 @@ thi_nghiem/
   b0_0811/              E0–E14, E20, E21 và so sánh tỉ lệ IR (SegFormer-B0 / proxy; seg/ = phần có train)
   b3_e15/               E15, E15b–E15e: làm hỏng VIS test, chấm bằng 12 model B3 (anh_mau/ = hình mẫu)
   e17/                  Student SAGE train lại không SAM (đang chạy)
+  lech_ir_vis_0711/     problem A: IR lệch có hại riêng SAGE không (đã bác bỏ) + thẻ problem bản 3
+  kiem_checkpoint/      checkpoint SAGE được train trên dữ liệu nào (giải ngược BatchNorm)
 ```
 
 Cập nhật: 14/11/2026. Người chạy thí nghiệm: Mân.

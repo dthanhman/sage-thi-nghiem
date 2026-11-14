@@ -1,0 +1,12 @@
+[A] Hai bộ đo độc lập có đồng ý không ở d=0? (ECC vs phase, chỉ lấy phase <=12px)
+ n 150 corr sx 0.62 sy 0.77 |chenh| med 1.72 P90 3.85
+[B] Nhãn đo IR->VIS = dinh_ir - dinh_vis, so với ECC/phase
+ |nhan| med 2.83; corr ECC sx 0.20 sy 0.19; corr phase sx 0.20 sy 0.14
+[C] Lệch thật của camera phải đổi từ từ theo khung liền nhau. So chênh giữa 2 khung liền kề với 2 khung ngẫu nhiên trong cùng khối
+  ecc lien ke med 1.32 | ngau nhien trong khoi med 2.42 (n=170)
+  phase lien ke med 1.25 | ngau nhien trong khoi med 2.26 (n=135)
+[D] Phần giảm vượt đối chứng, theo cặp từng ảnh: %SAGE - %TB
+ d=5 median E +0.14, SAGE kém hơn TB ở 34% ảnh, CI95 theo khoi [0.   0.49]
+   theo khoi [-0.0, 0.06, 0.77, 0.0, 0.49]
+ d=10 median E +0.12, SAGE kém hơn TB ở 42% ảnh, CI95 theo khoi [-0.11  0.69]
+   theo khoi [-0.25, 0.04, 0.54, -0.07, 0.75]
