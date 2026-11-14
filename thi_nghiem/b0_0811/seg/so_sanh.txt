@@ -1,0 +1,32 @@
+D:\Miniconda3\envs\DoAn\Lib\site-packages\numpy\lib\nanfunctions.py:1563: RuntimeWarning: All-NaN slice encountered
+  return function_base._ureduce(a,
+
+[273 ảnh] 273 ảnh, 19 khối | vis 51.78  sage 53.76  sage−vis +1.98 [-0.27; +4.82]
+
+IoU từng lớp (273 ảnh): lớp | vis | sage | Δ [CI95]
+  road             86.0   85.2   -0.8 [-2.9; +0.6]  
+  sidewalk         36.1   35.6   -0.5 [-4.0; +2.4]  
+  building         79.5   82.0   +2.5 [+0.8; +4.7] *
+  traffic_light    20.8   26.9   +6.1 [-1.0; +12.2]  
+  traffic_sign     67.8   70.3   +2.5 [-2.4; +8.4]  
+  vegetation       83.7   85.7   +2.0 [+0.6; +4.2] *
+  sky              93.2   94.9   +1.7 [+0.7; +3.0] *
+  person           50.9   63.2  +12.3 [+1.9; +33.4] *
+  car              74.5   73.3   -1.1 [-3.8; +1.3]  
+  truck            14.2   14.6   +0.4 [-9.4; +10.2]  
+  bus              10.1    8.3   -1.8 [-6.6; +0.1]  
+  motorcycle       13.4   15.2   +1.8 [-7.1; +15.3]  
+  pole             43.2   43.8   +0.6 [-0.5; +1.9]  
+
+[280 ảnh] 280 ảnh, 20 khối | vis 51.65  sage 53.71  sage−vis +2.06 [-0.19; +5.04]
+
+E3 thật – ngưỡng y_mean 105.8 / 148.5
+
+[toi] 91 ảnh, 9 khối | vis 46.33  sage 50.80  sage−vis +4.47 [+0.38; +9.08]
+     person vis 60.0 → sage 73.2; sign vis 75.6 → sage 76.7
+
+[vua] 91 ảnh, 15 khối | vis 50.41  sage 52.54  sage−vis +2.13 [-0.79; +4.09]
+     person vis 27.8 → sage 35.3; sign vis 57.8 → sage 64.2
+
+[sang] 91 ảnh, 9 khối | vis 56.37  sage 56.08  sage−vis -0.29 [-1.20; +2.49]
+     person vis 35.5 → sage 45.2; sign vis 66.6 → sage 66.3

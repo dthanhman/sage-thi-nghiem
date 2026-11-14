@@ -1,0 +1,55 @@
+E15d – Ảnh SAGE khi VIS tối+nhiễu kém ảnh tb (E15c: −2,4*) có phải do SAGE tạo nhiễu/vệt không? (273 ảnh, GPU vài phút)
+
+Ý tưởng: ở VÙNG PHẲNG (nơi cả VIS sạch lẫn IR đều gần như không có chi tiết) mọi dao động trong ảnh ghép là nhiễu/vệt.
+  - Vùng phẳng: độ lệch chuẩn cục bộ (cửa sổ 9x9) của Y VIS SẠCH < 2,5 VÀ của IR < 2,5 (thang 0–255), co mask 5 px.
+    Xác định từ ảnh nguồn sạch -> như nhau cho mọi phương pháp, mọi mức.
+  - Thành phần cao tần HP = Y − GaussBlur(Y, sigma 4). Đo phương sai HP trong vùng phẳng.
+  - Nhiễu THÊM VÀO = var_HP(mức tối) − var_HP(sạch), cộng gộp mọi ảnh (tính riêng SAGE, tb). Trừ mức sạch để bỏ
+    phần kết cấu thật còn sót trong vùng phẳng.
+  - Tham khảo tuyến tính: tb = (Yv + IR)/2 -> nhiễu VIS bị chia đôi. E15b: SAGE lấy IR ~0,74 ở nền khi toi3 -> nếu SAGE trộn
+    tuyến tính thì nhiễu phải ÍT hơn tb. Nhiều hơn tb = SAGE khuếch đại nhiễu (phi tuyến).
+  - Khám phá: tách 2 dải: mịn (Y − Gauss sigma 1) và vệt (Gauss sigma 1 − Gauss sigma 4).
+
+TIÊU CHÍ ĐẶT TRƯỚC (ghi 14/11, trước khi chạy), CI95 bootstrap theo khối:
+  N1 (chính) toi3: R = sqrt(nhiễu thêm SAGE / nhiễu thêm tb).
+     R ≥ 1,5 và CI > 1           -> SAGE nhiễu/vệt hơn tb rõ (ủng hộ "ảnh SAGE tối kém do nhiễu/vệt")
+     R ≤ 1,1 hoặc CI chứa 1      -> BÁC: ảnh SAGE tối kém không phải do nhiễu nhiều hơn
+     còn lại                     -> LƯNG CHỪNG
+     Kèm R ở toi1, toi2 (xem có tăng theo mức không).
+  N2 (liên hệ với mIoU, theo ảnh, toi3): d = mIoU_ảnh(tb) − mIoU_ảnh(SAGE), cùng model phân đoạn "sage" seed 0
+     (lấy từ e15/conf_cheo của E15c). Spearman rho giữa log(R_ảnh) và d.
+     rho ≥ 0,2 và CI > 0 -> nhiễu giải thích một phần chỗ thua; CI chứa 0 -> không thấy liên hệ theo ảnh
+     (mIoU từng ảnh nhiễu nên N2 chỉ là phụ).
+
+Vùng phẳng: 273/273 ảnh có ≥ 2000 px (trung vị 172046 px/ảnh, 35.8% ảnh); chỉ dùng các ảnh này.
+
+== Độ lệch chuẩn cao tần trong vùng phẳng (gộp, thang 0–255) – sqrt(var)
+  dải hp:     sach    toi1    toi2    toi3
+    vis       0.88    2.26    2.65    3.43
+    sage      1.35    2.20    2.61    3.27
+    tb        0.70    1.26    1.44    1.80
+  dải min:     sach    toi1    toi2    toi3
+    vis       0.58    1.96    2.32    3.01
+    sage      0.98    1.74    2.08    2.65
+    tb        0.47    1.06    1.23    1.56
+  dải vet:     sach    toi1    toi2    toi3
+    vis       0.43    0.62    0.70    0.89
+    sage      0.64    0.82    0.93    1.07
+    tb        0.34    0.40    0.44    0.52
+
+== Tỉ lệ nhiễu THÊM VÀO R = sqrt(thêm SAGE / thêm tb)   (>1: SAGE nhiễu hơn tb)
+  dải hp  toi1: R = 1.67 [1.55; 1.76]   (tham khảo VIS/tb: 1.99)
+  dải hp  toi2: R = 1.78 [1.65; 1.88]   (tham khảo VIS/tb: 1.99)
+  dải hp  toi3: R = 1.79 [1.76; 1.82]   (tham khảo VIS/tb: 2.00)
+  dải min toi1: R = 1.51 [1.40; 1.60]   (tham khảo VIS/tb: 1.98)
+  dải min toi2: R = 1.62 [1.46; 1.72]   (tham khảo VIS/tb: 1.98)
+  dải min toi3: R = 1.66 [1.60; 1.69]   (tham khảo VIS/tb: 1.99)
+  dải vet toi1: R = 2.41 [2.07; 2.69]   (tham khảo VIS/tb: 2.11)
+  dải vet toi2: R = 2.51 [2.26; 2.75]   (tham khảo VIS/tb: 2.07)
+  dải vet toi3: R = 2.23 [2.09; 2.44]   (tham khảo VIS/tb: 2.03)
+
+N1 toi3 dải hp: R = 1.79 [1.76; 1.82] -> SAGE nhiễu/vệt hơn tb rõ (ủng hộ giả thuyết)
+N2 toi3: 273 ảnh, TB d = +0.27; R theo ảnh trung vị 1.79 (P10 1.67, P90 1.91); rho(log R, d) = -0.07 [-0.29; +0.17] -> không thấy liên hệ theo ảnh
+     R thấp: 91 ảnh, TB d = +0.66
+     R giữa: 91 ảnh, TB d = +0.44
+     R cao: 91 ảnh, TB d = -0.29

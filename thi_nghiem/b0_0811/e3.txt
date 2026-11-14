@@ -1,0 +1,19 @@
+Ngưỡng y_mean: 105.8 / 148.5
+
+[toi] 91 ảnh, 9 khối | vis 32.8  ir 34.0  tb 37.0  sage 35.9
+     sage − vis: +3.14 [-0.35; +6.43]
+     sage − tb: -1.07 [-4.64; +0.57]
+     tb − vis: +4.20 [-0.63; +10.85]
+     IoU person vis 47.5 → sage 52.0; sign vis 39.3 → sage 41.4
+[vua] 91 ảnh, 15 khối | vis 47.8  ir 26.8  tb 47.3  sage 47.5
+     sage − vis: -0.33 [-2.03; +1.25]
+     sage − tb: +0.20 [-0.67; +1.09]
+     tb − vis: -0.53 [-2.31; +1.05]
+     IoU person vis 65.2 → sage 65.2; sign vis 68.6 → sage 70.0
+[sang] 91 ảnh, 9 khối | vis 59.0  ir 27.5  tb 57.2  sage 57.1
+     sage − vis: -1.83 [-2.60; -0.29]
+     sage − tb: -0.09 [-0.88; +1.05]
+     tb − vis: -1.74 [-2.85; -0.17]
+     IoU person vis 84.1 → sage 78.7; sign vis 88.3 → sage 88.2
+
+Kết luận theo tiêu chí: TRƯỢT

@@ -1,0 +1,72 @@
+E15 – Khi nào ghép có ích: làm hỏng VIS test, ghép lại, chấm bằng các model SegFormer-B3 đã train (không train lại).
+
+Câu hỏi: VIS càng hỏng thì lợi ích của ghép (SAGE, tb) so với VIS có tăng không? SAGE có hơn trộn trung bình (tb)
+và hơn chỉ dùng IR ở chỗ VIS hỏng không?
+
+Cách làm (chỉ làm hỏng VIS, IR giữ nguyên; 280 ảnh test, báo trên 273 ảnh sạch):
+  toi   : ảnh tối + nhiễu. Đổi sang tuyến tính (^2.2), nhân độ phơi sáng a, nhiễu Poisson (P=2000 photon)
+          + nhiễu đọc Gauss (sigma 0,002), đổi lại sRGB. Mức 1/2/3: a = 0,30 / 0,12 / 0,05
+  suong : sương/khói đều. x' = x*t + 0,85*(1-t). Mức 1/2/3: t = 0,60 / 0,35 / 0,15
+  sach  : mức 0, tính lại để đối chiếu với test_nham_last.npz của Kaggle (kiểm code)
+Mỗi model chấm đúng loại đầu vào nó đã học: vis <- VIS hỏng; sage <- SAGE(VIS hỏng, IR); tb <- (Y VIS hỏng + IR)/2.
+Model ir: đầu vào không đổi -> lấy lại ma trận nhầm lẫn đã có. Nhiễu cố định theo id ảnh (tái lập được).
+
+TIÊU CHÍ ĐẶT TRƯỚC (Mân duyệt 14/11, ghi trước khi chạy), mIoU_co_mat, 273 ảnh, CI95 bootstrap theo khối:
+  C1 ghép có ích khi VIS hỏng: ở mức 3 (cả toi lẫn suong) sage−vis ≥ +5 và CI > 0 ở mọi seed, và sage−vis
+     tăng dần theo mức (0<1<2<3, theo TB seed).  Đạt cả hai = ĐẠT; chỉ một = LƯNG CHỪNG; không = KHÔNG.
+  C2 SAGE có giá trị riêng so với trộn trung bình: ở mức 3, sage−tb > 0 và CI > 0 ở mọi seed = ĐẠT (SAGE hơn);
+     tb−sage > 0 và CI > 0 ở mọi seed = GAP (cách trộn của SAGE không hơn trộn TB đúng ở chỗ cần IR);
+     còn lại = LƯNG CHỪNG.
+  C3 ghép còn tận dụng VIS hỏng: ở mức 3, sage−ir > 0 và CI > 0 ở mọi seed = ĐẠT; ir−sage > 0 và CI > 0 = KHÔNG
+     (VIS hỏng nặng thì dùng IR một mình tốt hơn); còn lại = LƯNG CHỪNG.
+Lưu ý: model vis/sage/tb đều học trên ảnh sạch -> so sage−vis thiên về phía ghép; so sánh chính là sage với tb, ir.
+
+Seed: [0, 1]. mIoU_co_mat trên 273 ảnh sạch. * = CI95 không chứa 0.
+
+kiểm: seed 0 vis  sạch tính lại 62.07 | Kaggle 62.07
+kiểm: seed 0 sage sạch tính lại 62.62 | Kaggle 62.62
+kiểm: seed 0 tb   sạch tính lại 64.26 | Kaggle 64.27
+kiểm: seed 1 vis  sạch tính lại 62.56 | Kaggle 62.56
+kiểm: seed 1 sage sạch tính lại 63.07 | Kaggle 63.07
+kiểm: seed 1 tb   sạch tính lại 63.91 | Kaggle 63.91
+
+== mIoU (TB các seed) ==
+bt        vis     ir   sage     tb
+dk                                
+sach    62.31  55.65  62.85  64.09
+toi1    60.55  55.65  59.91  62.08
+toi2    57.13  55.65  56.57  58.55
+toi3    50.72  55.65  52.06  54.64
+suong1  60.97  55.65  63.15  64.75
+suong2  59.11  55.65  61.80  63.05
+suong3  47.02  55.65  58.46  57.78
+
+== Hiệu (seed 0) ==
+cap                 sage−vis                tb−vis             sage−tb              sage−ir                 tb−ir
+dk                                                                                                               
+sach      +0.55  [-1.4;+2.8]    +2.20* [+0.3;+4.2]  -1.65* [-2.7;-0.3]  +7.95* [+4.6;+10.5]   +9.60* [+6.1;+12.0]
+toi1      -0.39  [-2.7;+2.7]    +2.40  [-0.3;+5.4]  -2.78* [-4.3;-1.2]   +5.09* [+2.5;+6.9]    +7.88* [+4.9;+9.8]
+toi2      -0.31  [-3.3;+3.5]    +2.09  [-1.4;+6.3]  -2.40* [-3.6;-1.2]   +1.52  [-0.6;+3.4]    +3.92* [+2.1;+5.4]
+toi3      +1.64  [-3.4;+6.6]    +4.06  [-1.5;+9.9]  -2.42* [-4.3;-0.7]   -2.95* [-5.9;-0.7]    -0.53  [-2.3;+0.8]
+suong1    +2.33* [+0.4;+4.0]    +4.57* [+1.7;+6.5]  -2.24  [-3.8;+0.2]  +8.22* [+4.5;+11.0]  +10.45* [+5.6;+13.0]
+suong2    +2.73* [+0.6;+5.2]    +4.43* [+1.0;+7.6]  -1.70  [-3.8;+1.1]   +6.72* [+3.4;+9.1]   +8.42* [+4.2;+10.5]
+suong3  +10.13* [+5.9;+14.6]  +10.83* [+5.2;+16.7]  -0.70  [-2.9;+1.6]   +2.94  [-0.2;+4.9]    +3.64* [+0.3;+5.5]
+
+== Hiệu (seed 1) ==
+cap                 sage−vis                tb−vis             sage−tb              sage−ir                tb−ir
+dk                                                                                                              
+sach      +0.51  [-1.3;+3.0]    +1.35  [-0.9;+4.7]  -0.84  [-2.5;+0.5]  +6.43* [+2.5;+11.0]  +7.27* [+3.7;+11.9]
+toi1      -0.89  [-3.6;+2.6]    +0.68  [-1.9;+4.9]  -1.56* [-3.1;-0.0]   +3.42  [-0.1;+7.8]   +4.98* [+2.1;+9.3]
+toi2      -0.80  [-4.1;+3.4]    +0.77  [-2.8;+6.1]  -1.57* [-3.1;-0.5]   +0.31  [-2.5;+4.3]   +1.88  [-0.8;+5.8]
+toi3      +1.03  [-4.3;+6.7]   +3.78  [-2.5;+10.6]  -2.76* [-4.3;-1.3]   -4.24* [-6.8;-0.6]   -1.49  [-4.2;+1.8]
+suong1    +2.02* [+0.2;+4.7]    +2.99* [+0.7;+6.3]  -0.98  [-2.6;+0.4]  +6.77* [+2.5;+11.6]  +7.74* [+4.4;+12.0]
+suong2    +2.64* [+0.6;+5.6]    +3.44* [+0.5;+7.0]  -0.80  [-3.0;+1.2]  +5.57* [+1.4;+10.3]   +6.37* [+3.9;+9.3]
+suong3  +12.74* [+7.9;+17.8]  +10.69* [+5.2;+16.5]  +2.04  [-0.5;+4.7]   +2.67  [-1.3;+6.9]   +0.63  [-1.9;+3.0]
+
+== Tiêu chí ==
+[toi] C1 sage−vis mức 0..3 (TB seed) +0.53 -0.64 -0.56 +1.33 | mức 3 ≥+5 & CI>0: False | tăng dần: False -> KHÔNG
+[toi] C2 sage−tb mức 3: -2.42* [-4.3;-0.7] -2.76* [-4.3;-1.3] -> GAP (tb ≥ SAGE)
+[toi] C3 sage−ir mức 3: -2.95* [-5.9;-0.7] -4.24* [-6.8;-0.6] -> KHÔNG (IR một mình tốt hơn)
+[suong] C1 sage−vis mức 0..3 (TB seed) +0.53 +2.17 +2.69 +11.43 | mức 3 ≥+5 & CI>0: True | tăng dần: True -> ĐẠT
+[suong] C2 sage−tb mức 3: -0.70  [-2.9;+1.6] +2.04  [-0.5;+4.7] -> LƯNG CHỪNG
+[suong] C3 sage−ir mức 3: +2.94  [-0.2;+4.9] +2.67  [-1.3;+6.9] -> LƯNG CHỪNG

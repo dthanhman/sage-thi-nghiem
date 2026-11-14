@@ -1,0 +1,4 @@
+['vis', 'sage']: oracle 48.90 | tốt nhất đơn lẻ sage 47.03 | lợi ích +1.87 [+0.65; +2.22] | số lần chọn {'vis': 159, 'sage': 114}
+   ảnh chọn sage có y_mean TB 116.6, ảnh chọn vis 130.4
+   Kết luận theo tiêu chí: YẾU
+['vis', 'tb', 'sage']: oracle 49.73 | tốt nhất đơn lẻ tb 47.43 | lợi ích +2.30 [+1.01; +2.95] | số lần chọn {'vis': 129, 'tb': 86, 'sage': 58}

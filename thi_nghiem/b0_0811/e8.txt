@@ -1,0 +1,7 @@
+tb    ρ = +0.654 | L TB theo nhóm: tối -0.003  vừa +0.075  sáng +0.101 | MS_IR 0.771 MS_VIS 0.829
+sage  ρ = +0.648 | L TB theo nhóm: tối +0.069  vừa +0.254  sáng +0.298 | MS_IR 0.658 MS_VIS 0.865
+vis   ρ = +0.433 | L TB theo nhóm: tối +0.465  vừa +0.557  sáng +0.589 | MS_IR 0.463 MS_VIS 1.000
+ir    ρ = -0.433 | L TB theo nhóm: tối -0.465  vừa -0.557  sáng -0.589 | MS_IR 1.000 MS_VIS 0.463
+
+ρ(sage) − ρ(tb) = -0.005 [-0.150; +0.158]
+Kết luận: KHÔNG THÍCH NGHI

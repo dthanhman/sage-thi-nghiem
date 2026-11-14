@@ -1,0 +1,18 @@
+BN lớp đầu, trung bình |Δmean|: 0.009096174500882626  tỉ lệ var M3FD/gốc TB: 0.723926842212677
+
+== M3FD (BN ước lượng trên 150 ảnh khác): 150 ảnh chấm ==
+  SCD          gốc 1.7587  AdaBN 1.7537  Δ -0.29% [-0.47; -0.12]
+  MS_SSIM_sum  gốc 1.4479  AdaBN 1.4274  Δ -1.41% [-1.51; -1.33]
+  Q_ABF        gốc 0.6202  AdaBN 0.6433  Δ +3.74% [+3.30; +4.21]
+  EN           gốc 6.8499  AdaBN 6.9366  Δ +1.26% [+1.13; +1.39]
+  SD           gốc 35.7887  AdaBN 37.4824  Δ +4.73% [+4.18; +5.30]
+
+== FMB test 273 (kiểm tra hợp lệ, BN ước lượng trên dev): 273 ảnh chấm ==
+  SCD          gốc 1.7123  AdaBN 1.6972  Δ -0.88% [-1.67; -0.24]
+  MS_SSIM_sum  gốc 1.5222  AdaBN 1.5154  Δ -0.45% [-0.62; -0.21]
+  Q_ABF        gốc 0.6736  AdaBN 0.6908  Δ +2.55% [+1.84; +3.42]
+  EN           gốc 6.8373  AdaBN 6.8174  Δ -0.29% [-0.52; -0.08]
+  SD           gốc 37.7196  AdaBN 35.7911  Δ -5.11% [-7.08; -2.99]
+
+Kiểm tra hợp lệ trên FMB (|Δ| < 1%): KHÔNG
+Kết luận E6 theo tiêu chí: KHÔNG KẾT LUẬN

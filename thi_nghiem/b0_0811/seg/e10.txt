@@ -1,0 +1,12 @@
+
+D = 2 px (dải biên chiếm 7.3% pixel có nhãn)
+  biên : vis 28.95  sage 30.89  sage−vis +1.94 [0.7  3.56]
+  trong: vis 55.73  sage 57.84  sage−vis +2.12 [-0.53  5.37]
+  (biên − trong) -0.18 [-2.26  1.56]
+
+D = 5 px (dải biên chiếm 16.7% pixel có nhãn)
+  biên : vis 36.05  sage 38.65  sage−vis +2.60 [0.94 4.68]
+  trong: vis 58.48  sage 60.35  sage−vis +1.87 [-1.36  5.76]
+  (biên − trong) +0.73 [-1.82  2.95]
+
+Kết luận theo tiêu chí: G2 KHÔNG có bằng chứng ở biên

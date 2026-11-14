@@ -1,0 +1,82 @@
+(1) mIoU từng ảnh, sage − vis: trung vị +1.62, sage hơn ở 191/273 ảnh
+    Spearman(d, y_mean ) = -0.34 (p = 0.000)
+    Spearman(d, ir_mean) = -0.04 (p = 0.506)
+    Spearman(d, ir_std ) = -0.44 (p = 0.000)
+    Spearman(d, ir_ct  ) = -0.48 (p = 0.000)
+    10 ảnh sage THUA nhiều nhất:
+image_id  khoi  y_mean  ir_std    d
+   00353     6   145.2    49.4 -9.8
+   00382     8    50.4    46.2 -8.6
+   00354     6   145.4    51.2 -7.2
+   01430    19   154.4    60.8 -6.4
+   01369    18   149.2    63.9 -6.4
+   00381     8    47.8    46.2 -5.8
+   01315    17   141.3    43.5 -5.2
+   01435    19   147.1    52.2 -5.1
+   00123     3   146.2    34.7 -5.0
+   00352     6   143.6    46.4 -5.0
+    10 ảnh sage HƠN nhiều nhất:
+image_id  khoi  y_mean  ir_std    d
+   00089     2   168.9    34.5 38.8
+   00046     1    56.6    30.4 20.4
+   00045     1    69.8    32.3 19.1
+   00090     2   161.3    34.2 17.0
+   00643    11   108.5    18.4 14.0
+   00637    11   116.4    21.2 13.3
+   00135     3   121.2    29.5 12.8
+   00645    11   100.2    16.0 12.6
+   00636    11   109.8    20.8 12.5
+   00638    11   115.1    21.4 12.3
+    Theo khối (cảnh): mIoU khối sage − vis
+      khối  1:   9 ảnh, sáng  74.3, ir_std 37.7 | +10.24
+      khối  2:   6 ảnh, sáng 117.5, ir_std 40.5 |  +5.36
+      khối  3:  15 ảnh, sáng 115.1, ir_std 32.6 |  +3.48
+      khối  4:   6 ảnh, sáng 144.3, ir_std 52.5 |  -0.86
+      khối  5:   7 ảnh, sáng 155.1, ir_std 53.4 |  +1.30
+      khối  6:  10 ảnh, sáng 151.7, ir_std 55.9 |  +0.07
+      khối  7:   5 ảnh, sáng 147.9, ir_std 48.0 |  -0.39
+      khối  8:   8 ảnh, sáng  48.5, ir_std 47.9 |  -1.63
+      khối  9:  18 ảnh, sáng 117.8, ir_std 51.6 |  +3.46
+      khối 11:  15 ảnh, sáng 107.4, ir_std 18.7 | +10.73
+      khối 12:  12 ảnh, sáng  95.7, ir_std 44.4 |  +6.04
+      khối 13:  34 ảnh, sáng  99.8, ir_std 39.0 |  +4.77
+      khối 14:  11 ảnh, sáng 108.1, ir_std 46.8 |  +3.32
+      khối 15:  13 ảnh, sáng  96.2, ir_std 40.6 |  +3.50
+      khối 16:  11 ảnh, sáng 148.7, ir_std 41.8 |  +2.58
+      khối 17:  24 ảnh, sáng 148.8, ir_std 45.1 |  -1.94
+      khối 18:  18 ảnh, sáng 152.5, ir_std 60.7 |  -0.39
+      khối 19:  24 ảnh, sáng 152.4, ir_std 53.5 |  +0.39
+      khối 20:  27 ảnh, sáng 148.1, ir_std 44.3 |  +0.11
+
+(2) Nhầm lẫn TĂNG nhiều nhất khi dùng sage (điểm % của pixel GT):
+    bus            -> car             27.6% ->  40.8%
+    motorcycle     -> road             9.7% ->  16.8%
+    bus            -> road             1.9% ->   5.3%
+    sidewalk       -> road            44.1% ->  47.4%
+    truck          -> car             57.3% ->  59.5%
+    traffic_light  -> traffic_sign     5.7% ->   7.6%
+    traffic_light  -> sky             10.4% ->  12.2%
+    traffic_light  -> vegetation      17.2% ->  18.9%
+    Nhầm lẫn GIẢM nhiều nhất:
+    bus            -> building        36.0% ->  21.9%
+    motorcycle     -> car             40.2% ->  31.7%
+    person         -> vegetation      13.5% ->   7.2%
+    person         -> building        10.4% ->   4.5%
+    traffic_light  -> pole            12.0% ->   6.2%
+    traffic_light  -> building        28.0% ->  22.3%
+    motorcycle     -> person          34.2% ->  30.4%
+    traffic_sign   -> building        15.4% ->  12.2%
+
+(3) Người trong GT: 641 người (diện tích ≥ 20 px). Tỉ lệ pixel người đoán đúng (recall):
+                         vis         sage      
+                        mean count   mean count
+co           toi                               
+nhỏ (<40px)  tối       0.030   121  0.448   121
+             vừa/sáng  0.061   336  0.148   336
+vừa (40–100) tối       0.059    20  0.660    20
+             vừa/sáng  0.395   109  0.502   109
+lớn (>100)   tối       0.594    44  0.879    44
+             vừa/sáng  0.768    11  0.825    11
+    nhỏ (<40px): sage − vis = +17.5 điểm [+4.5; +34.0]
+    vừa (40–100): sage − vis = +18.4 điểm [+5.7; +36.1]
+    lớn (>100): sage − vis = +24.0 điểm [-1.6; +51.0]

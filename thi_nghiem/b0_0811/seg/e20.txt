@@ -1,0 +1,22 @@
+E20 – w_nen (tỉ lệ IR SAGE lấy ở nền nhà/cây/trời) vs d = mIoU_ảnh(tb) - mIoU_ảnh(sage)
+273/273 ảnh có nền ≥ 5% pixel. w_nen: trung vị 0.138, P10 0.103, P90 0.230
+
+== B0 (tb 2 seed, sage 2 seed)
+  Spearman ρ(w_nen, d)            = +0.288 [+0.046; +0.453]
+  riêng phần, giữ độ sáng         = +0.297 [+0.067; +0.438]
+  (tham khảo) ρ(w cả ảnh, d)      = +0.100
+  w_nen thấp  (w +0.05..+0.13): d TB -0.04, sáng TB 131
+  w_nen vừa   (w +0.13..+0.15): d TB +0.46, sáng TB 133
+  w_nen cao   (w +0.15..+0.94): d TB +1.20, sáng TB 109
+  -> lưng chừng
+
+== B3 (tb 2 seed, sage 2 seed)
+  Spearman ρ(w_nen, d)            = +0.186 [-0.042; +0.378]
+  riêng phần, giữ độ sáng         = +0.206 [-0.050; +0.392]
+  (tham khảo) ρ(w cả ảnh, d)      = -0.055
+  w_nen thấp  (w +0.05..+0.13): d TB +0.31, sáng TB 131
+  w_nen vừa   (w +0.13..+0.15): d TB +0.10, sáng TB 133
+  w_nen cao   (w +0.15..+0.94): d TB +1.03, sáng TB 109
+  -> bác
+
+KẾT LUẬN theo tiêu chí: LƯNG CHỪNG ({'B0': 'lưng chừng', 'B3': 'bác'})

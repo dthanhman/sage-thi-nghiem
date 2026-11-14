@@ -1,0 +1,33 @@
+E14 – chỉ số ghép vs mIoU (273 ảnh test sạch)
+
+== Giá trị TB theo biến thể
+            SCD  MS_SSIM_sum  Q_ABF     EN      SD      SF     AG  mIoU_B0  mIoU_B3
+bien_the                                                                           
+vis       0.547        1.463  0.755  6.433  29.919  13.951  4.817   51.591   62.314
+ir        0.838        1.463  0.318  6.884  44.583   4.320  1.633      NaN   55.654
+clahe     0.617        1.230  0.441  6.996  39.512  23.396  9.096   51.355      NaN
+ir30      1.385        1.578  0.661  6.290  23.793   9.865  3.509   53.648      NaN
+sage      1.712        1.522  0.674  6.837  37.720  12.746  4.570   53.271   62.846
+tb        1.385        1.600  0.403  6.189  25.469   7.343  2.734   54.071   64.088
+ir70      1.385        1.590  0.233  6.438  31.430   5.219  2.098   54.813      NaN
+
+== Xếp hạng (1 = cao nhất)
+          SCD  MS_SSIM_sum  Q_ABF   EN   SD   SF   AG  mIoU_B0  mIoU_B3
+bien_the                                                               
+vis       7.0          5.5    1.0  5.0  5.0  2.0  2.0      5.0      3.0
+ir        5.0          5.5    6.0  2.0  1.0  7.0  7.0      NaN      4.0
+clahe     6.0          7.0    4.0  1.0  2.0  1.0  1.0      6.0      NaN
+ir30      2.0          3.0    3.0  6.0  7.0  4.0  4.0      3.0      NaN
+sage      1.0          4.0    2.0  3.0  3.0  3.0  3.0      4.0      2.0
+tb        3.0          1.0    5.0  7.0  6.0  5.0  5.0      2.0      1.0
+ir70      4.0          2.0    7.0  4.0  4.0  6.0  6.0      1.0      NaN
+
+== Kendall τ giữa chỉ số và mIoU (cấp tập), đồng ý theo ảnh (B0, 15 cặp biến thể)
+  chỉ số        τ B0 (6)  τ B3 (4)  đồng ý/ảnh  kết luận
+  SCD               0.07      0.33       59.8%  KHÔNG ĐÁNG TIN
+  MS_SSIM_sum       0.87      0.91       62.0%  ĐÁNG TIN
+  Q_ABF            -0.60      0.00       47.7%  KHÔNG ĐÁNG TIN
+  EN               -0.47     -0.67       50.1%  KHÔNG ĐÁNG TIN
+  SD               -0.33     -0.67       51.3%  KHÔNG ĐÁNG TIN
+  SF               -1.00      0.00       38.1%  KHÔNG ĐÁNG TIN
+  AG               -1.00      0.00       39.1%  KHÔNG ĐÁNG TIN

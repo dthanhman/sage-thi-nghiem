@@ -1,0 +1,51 @@
+E15b – Khi VIS hỏng, SAGE có lấy IR nhiều hơn không? (không train, 273 ảnh test sạch, vài phút)
+
+Dùng lại cách đo của E13: trong mỗi vùng, ước lượng tỉ lệ IR hiệu dụng w bằng bình phương nhỏ nhất
+    Y_ghep - Y_vis_hong ≈ w * (IR - Y_vis_hong)   ->   w = Σ(Yg-Yv)(IR-Yv) / Σ(IR-Yv)²
+w = 0: chỉ VIS (đã hỏng), w = 1: chỉ IR. Y_vis_hong là kênh Y của VIS ĐÃ làm hỏng (đúng thứ SAGE nhận vào).
+Điều kiện làm hỏng giống hệt E15 (cùng hàm lam_hong). Kiểm thử: tb phải ra 0,5 ở mọi mức.
+Vùng: cả ảnh, người (nhãn 8), nền (road, sidewalk, building, vegetation, sky, pole).
+
+TIÊU CHÍ ĐẶT TRƯỚC (ghi 14/11, trước khi chạy), Δw = w(mức 3) − w(sạch), cả ảnh, CI95 bootstrap theo khối:
+  D1 [toi]   Δw ≥ +0,10 và CI > 0          -> SAGE CÓ tăng IR khi VIS tối+nhiễu (thua tb vì cách trộn, không vì thiếu IR)
+             Δw < +0,05 hoặc CI chứa 0     -> SAGE KHÔNG thích nghi theo chất lượng VIS (xác nhận gap của E15)
+             còn lại                        -> LƯNG CHỪNG
+  D2 [suong] cùng ngưỡng, để đối chiếu (E15: SAGE xử lý sương tốt)
+
+== w của SAGE [tất cả – theo độ sáng ảnh GỐC] 273 ảnh   (tb cả ảnh để kiểm, phải = 0,5)
+  mức       cả ảnh     người       nền   R²(cả ảnh)  tb
+  sach       0.223     0.986     0.203        0.34  0.500
+  toi1       0.683     0.958     0.644        0.65  0.500
+  toi2       0.783     0.926     0.771        0.79  0.500
+  toi3       0.742     0.902     0.736        0.79  0.500
+  suong1     0.124     1.042     0.122        0.25  0.500
+  suong2     0.105     0.431     0.108        0.33  0.500
+  suong3     0.097     0.014     0.101        0.41  0.500
+
+== w của SAGE [tối – theo độ sáng ảnh GỐC] 91 ảnh   (tb cả ảnh để kiểm, phải = 0,5)
+  mức       cả ảnh     người       nền   R²(cả ảnh)  tb
+  sach       0.559     1.005     0.505        0.45  0.500
+  toi1       0.791     0.956     0.774        0.78  0.500
+  toi2       0.695     0.928     0.672        0.72  0.500
+  toi3       0.636     0.910     0.612        0.68  0.500
+  suong1     0.121     1.167     0.106        0.09  0.500
+  suong2     0.083     0.602     0.083        0.14  0.500
+  suong3     0.075     0.047     0.078        0.26  0.500
+
+== w của SAGE [sáng – theo độ sáng ảnh GỐC] 91 ảnh   (tb cả ảnh để kiểm, phải = 0,5)
+  mức       cả ảnh     người       nền   R²(cả ảnh)  tb
+  sach       0.173     0.782     0.166        0.30  0.500
+  toi1       0.599     0.972     0.565        0.55  0.500
+  toi2       0.853     0.919     0.847        0.81  0.500
+  toi3       0.854     0.871     0.864        0.85  0.500
+  suong1     0.130     0.391     0.130        0.37  0.500
+  suong2     0.115    -0.032     0.118        0.43  0.500
+  suong3     0.108    -0.096     0.112        0.48  0.500
+
+== TIÊU CHÍ (cả ảnh, tất cả 273 ảnh); kèm Δw vùng người và nền
+D1 [toi] cả ảnh w sạch 0.223 -> mức 3 0.742 | Δw +0.519 [+0.404; +0.606] -> SAGE CÓ tăng IR
+   [toi] người  w sạch 0.986 -> mức 3 0.902 | Δw -0.085 [-0.157; -0.025]
+   [toi] nền    w sạch 0.203 -> mức 3 0.736 | Δw +0.533 [+0.423; +0.628]
+D2 [suong] cả ảnh w sạch 0.223 -> mức 3 0.097 | Δw -0.126 [-0.204; -0.082] -> SAGE KHÔNG thích nghi theo chất lượng VIS
+   [suong] người  w sạch 0.986 -> mức 3 0.014 | Δw -0.972 [-1.103; -0.916]
+   [suong] nền    w sạch 0.203 -> mức 3 0.101 | Δw -0.102 [-0.166; -0.065]

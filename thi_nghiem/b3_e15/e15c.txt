@@ -1,0 +1,27 @@
+E15c – Kết quả tối của E15 là do ảnh SAGE kém, hay do model phân đoạn "sage" lạ ảnh? (seed 0, ~15 phút GPU)
+
+Chấm chéo: ảnh đầu vào {sage, tb} (mức sach, toi3) × model B3 {vis, ir, sage, tb} (seed 0). 273 ảnh sạch.
+E15b: khi tối, SAGE lấy IR ở nền 0,74 (sạch chỉ 0,20) -> ảnh SAGE tối giống IR hơn ảnh SAGE sạch mà model "sage" đã học.
+
+TIÊU CHÍ ĐẶT TRƯỚC (ghi 14/11, trước khi chạy), mIoU_co_mat, CI95 bootstrap theo khối:
+  H1 (lệch phân phối): trên ảnh SAGE toi3, model tốt nhất KHÁC "sage" hơn model "sage" ≥ +2 và CI > 0
+      -> ĐÚNG: kết quả tối của E15 là do model lạ ảnh, không dùng làm gap.
+      Nếu model "sage" vẫn tốt nhất hoặc hơn < +2 -> SAI: ảnh SAGE tối thật sự kém.
+  H2 (so ảnh, mỗi ảnh lấy model tốt nhất cho nó): max_model(SAGE toi3) − max_model(tb toi3)
+      CI < 0 -> ảnh SAGE tối kém ảnh tb (gap thật); CI chứa 0 -> ngang nhau; CI > 0 -> SAGE hơn.
+      (Lưu ý: chọn max trên test là lạc quan như nhau cho cả hai.)
+Kèm: hình anh_mau/luoi_{id}.jpg (VIS hỏng | SAGE | tb | IR ở sach / toi3 / suong3) để nhìn vùng người khi sương.
+
+== mIoU, mức sach (hàng = ảnh đầu vào, cột = model; đường chéo sage/sage, tb/tb = số E15)
+          model vis  model ir  model sage  model tb
+ảnh sage      56.80     48.25       62.62     61.70
+ảnh tb        58.99     49.20       62.23     64.26
+
+== mIoU, mức toi3 (hàng = ảnh đầu vào, cột = model; đường chéo sage/sage, tb/tb = số E15)
+          model vis  model ir  model sage  model tb
+ảnh sage      41.97     44.70       51.71     49.82
+ảnh tb        47.59     51.35       53.43     54.14
+
+== Tiêu chí (toi3, seed 0)
+H1 ảnh SAGE: model tốt nhất = sage; hơn model sage +0.00 [+0.00; +0.00] -> SAI: ảnh SAGE tối thật sự kém
+H2 ảnh SAGE (model sage) − ảnh tb (model tb) = -2.42 [-4.30; -0.69] -> ảnh SAGE kém hơn tb
