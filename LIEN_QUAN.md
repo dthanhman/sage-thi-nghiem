@@ -27,17 +27,19 @@
 
 ## Các bài chấm lại SAGE trên FMB (số "theo bài", tra đến 11/2026)
 
-| Bài | Mạng chấm | mIoU SAGE | SAGE hơn VIS |
-|---|---|---|---|
-| SAGE gốc | SegFormer-B3 | 61,2 | **+12,1** |
-| SSVIF (preprint, arXiv 2509.22450) | SegFormer-B3 (tinh chỉnh từ model SegMiF) | 62,0 | +0,03 |
-| AD-SRF | OverLock-B | 61,4 | +2,5 |
-| P2Fusion | SegFormer-B5 | 56,5 | +1,0 |
-| PCDFusion | SegFormer-B2 (khởi tạo Cityscapes) | 56,3 | +3,7 |
-| CLDyN | SegFormer-B2 | 54,9 | +5,5 |
-| **Nhóm (B3, 3 seed)** | SegFormer-B3 | 63,4 | **+0,8** |
+| Bài | Mạng chấm | mIoU SAGE (theo bài) | mIoU phương pháp của bài | Bài đó − SAGE |
+|---|---|---|---|---|
+| SSVIF (arXiv 2509.22450, 2025) | SegFormer-B3 | 62,04 | 62,07 | +0,03 |
+| AD-SRF (arXiv 2610.12897, 2026) | OverLock-B | 61,39 | 63,87 | +2,5 |
+| P2Fusion (arXiv 2608.13045, 2026) | SegFormer-B5 | 56,48 | 57,46 | +1,0 |
+| PCDFusion (NeurIPS 2026) | SegFormer-B2 | 56,3 \* | 60,05 | +3,7 |
+| CLDyN (CVPR 2026, arXiv 2604.08924) | SegFormer-B2 | 54,89 \*\* | 60,34 | +5,5 |
 
-- Không bài nào gần +12,1. Mạng chấm càng mạnh, SAGE càng ít lợi (nhóm: B0 +1,7 → B3 +0,8).
+- ⚠ **Sửa 16/11/2026:** bản trước ghi cột cuối là "SAGE hơn VIS" – **sai**. Đối chiếu bảng gốc từng bài: cột đó là *phương pháp của bài − SAGE*. **Không bài nào trong 5 bài có dòng "chỉ dùng VIS" trên FMB.**
+- → **Chưa bài nào kiểm lại mức SAGE − VIS = +12,1** (Bảng 1 bài SAGE: VIS 49,1 → SAGE 61,2). Số đối chiếu duy nhất hiện có là của nhóm: **+0,8** (SegFormer-B3, 3 seed).
+- Trong bảng của các bài, SAGE chỉ ngang các cách ghép khác: SSVIF đặt SAGE 62,04 cạnh SegMiF 62,14 và CDDFuse 61,64 (không dùng nhãn); CLDyN xếp SAGE thấp nhất trong 11 phương pháp.
+- \* PCDFusion: repo GitHub chỉ công bố 60,05; số SAGE 56,3 lấy từ ghi chú cũ, chưa đối chiếu lại bản bài.
+- \*\* CLDyN: bảng không ghi rõ dataset của cột phân đoạn (bài chỉ nói có đánh giá trên FMB).
 - Lời chê SAGE trong các bài trên (lệch IR/VIS, mờ chi tiết) mâu thuẫn nhau và chỉ định tính; E10 bác "mờ biên".
 - PCDFusion tự nhận yếu ở vùng tối / IR không tin cậy.
 

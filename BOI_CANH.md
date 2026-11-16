@@ -84,7 +84,7 @@ Chi tiết: [`b3_baseline/README.md`](b3_baseline/README.md).
 - Lớp người: VIS 59,0 → SAGE 69,9 ≈ TB 69,7 ≈ IR 70,9 → cái lợi đến từ ảnh nhiệt, không riêng SAGE.
 - Theo từng ảnh: SAGE thắng VIS 159 ảnh, thua 51, hòa 63; thắng gần như nhờ lớp người (đêm, khói, đèn chói); thua ở
   ban ngày, xe lớn (xe buýt/xe tải bị đoán thành xe con).
-- **Không tái lập được +12,1 của bài.** Mọi bài chấm lại SAGE khác cũng chỉ được 0 đến +5,5 (xem `LIEN_QUAN.md`).
+- **Không tái lập được +12,1 của bài.** Chưa bài nào khác đo lại SAGE − VIS trên FMB (xem `LIEN_QUAN.md`, đã sửa 16/11/2026).
 
 ## 7. B0 (khám phá, trước B3)
 

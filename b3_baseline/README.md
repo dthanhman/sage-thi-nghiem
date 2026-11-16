@@ -137,19 +137,19 @@ Các chi tiết tác động như nhau lên cả 4 loại ảnh thì khó tạo 
 
 *(Số "theo bài", nhóm chưa tự kiểm. Tra đến 11/2026.)*
 
-| Bài | Mạng chấm | mIoU SAGE | SAGE hơn VIS |
-|---|---|---|---|
-| **SAGE gốc** | SegFormer-B3 | 61,2 | **+12,1** |
-| SSVIF (preprint) | SegFormer-B3 | 62,0 | +0,03 |
-| AD-SRF | OverLock-B | 61,4 | +2,5 |
-| P2Fusion | SegFormer-B5 | 56,5 | +1,0 |
-| PCDFusion | SegFormer-B2 (khởi tạo Cityscapes) | 56,3 | +3,7 |
-| CLDyN | SegFormer-B2 | 54,9 | +5,5 |
-| **Nhóm** (3 seed) | SegFormer-B3 | 63,4 | **+0,8** |
+| Bài | Mạng chấm | mIoU SAGE (theo bài) | mIoU phương pháp của bài | Bài đó − SAGE |
+|---|---|---|---|---|
+| SSVIF (arXiv 2509.22450, 2025) | SegFormer-B3 | 62,04 | 62,07 | +0,03 |
+| AD-SRF (arXiv 2610.12897, 2026) | OverLock-B | 61,39 | 63,87 | +2,5 |
+| P2Fusion (arXiv 2608.13045, 2026) | SegFormer-B5 | 56,48 | 57,46 | +1,0 |
+| PCDFusion (NeurIPS 2026) | SegFormer-B2 | 56,3 \* | 60,05 | +3,7 |
+| CLDyN (CVPR 2026, arXiv 2604.08924) | SegFormer-B2 | 54,89 \*\* | 60,34 | +5,5 |
 
-- Điểm tuyệt đối khác nhau do mỗi bài một cấu hình → **chỉ so mức tăng**.
-- **Mọi bài chấm lại đều chỉ được 0 đến +5,5**, không bài nào gần +12,1. Bài cùng dùng B3 (SSVIF) ra +0,03, rất gần nhóm.
-- Mạng chấm càng mạnh, SAGE càng ít lợi (B2: +3,7…+5,5; B3/B5: 0…+1). Nhóm cũng thấy điều này: SegFormer-B0 +1,7 (chạy thử riêng của Mân, 2 seed, chưa đưa lên repo) → B3 +0,8.
+- ⚠ **Sửa 16/11/2026:** bản trước ghi cột cuối là "SAGE hơn VIS" – **sai**. Đối chiếu bảng gốc từng bài: cột đó là *phương pháp của bài − SAGE*. **Không bài nào trong 5 bài có dòng "chỉ dùng VIS" trên FMB.**
+- → **Chưa bài nào kiểm lại mức SAGE − VIS = +12,1** (Bảng 1 bài SAGE: VIS 49,1 → SAGE 61,2). Số đối chiếu duy nhất hiện có là của nhóm: **+0,8** (SegFormer-B3, 3 seed).
+- Trong bảng của các bài, SAGE chỉ ngang các cách ghép khác: SSVIF đặt SAGE 62,04 cạnh SegMiF 62,14 và CDDFuse 61,64 (không dùng nhãn); CLDyN xếp SAGE thấp nhất trong 11 phương pháp.
+- \* PCDFusion: repo GitHub chỉ công bố 60,05; số SAGE 56,3 lấy từ ghi chú cũ, chưa đối chiếu lại bản bài.
+- \*\* CLDyN: bảng không ghi rõ dataset của cột phân đoạn (bài chỉ nói có đánh giá trên FMB).
 - **Điều nhóm làm thêm mà các bài trên không có:** ghi đủ cấu hình, nhiều seed, khoảng tin cậy, và đối chứng ghép trung bình.
 
 ---
