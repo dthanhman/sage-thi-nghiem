@@ -142,14 +142,13 @@ Các chi tiết tác động như nhau lên cả 4 loại ảnh thì khó tạo 
 | SSVIF (arXiv 2509.22450, 2025) | SegFormer-B3 | 62,04 | 62,07 | +0,03 |
 | AD-SRF (arXiv 2610.12897, 2026) | OverLock-B | 61,39 | 63,87 | +2,5 |
 | P2Fusion (arXiv 2608.13045, 2026) | SegFormer-B5 | 56,48 | 57,46 | +1,0 |
-| PCDFusion (NeurIPS 2026) | SegFormer-B2 | 56,3 \* | 60,05 | +3,7 |
-| CLDyN (CVPR 2026, arXiv 2604.08924) | SegFormer-B2 | 54,89 \*\* | 60,34 | +5,5 |
+| PCDFusion (NeurIPS 2026, arXiv 2610.23663) | SegFormer-B2 | 56,33 | 60,05 | +3,7 |
+| CLDyN (CVPR 2026, arXiv 2604.08924) | SegFormer-B2 | 54,89 \* | 60,34 | +5,5 |
 
-- ⚠ **Sửa 16/11/2026:** bản trước ghi cột cuối là "SAGE hơn VIS" – **sai**. Đối chiếu bảng gốc từng bài: cột đó là *phương pháp của bài − SAGE*. **Không bài nào trong 5 bài có dòng "chỉ dùng VIS" trên FMB.**
+- ⚠ **Sửa 16/11/2026:** bản trước ghi cột cuối là "SAGE hơn VIS" – **sai**. Đối chiếu bảng gốc từng bài (SSVIF Bảng I, AD-SRF Bảng III, P2Fusion Bảng 2, PCDFusion Bảng 2 và 14, CLDyN Bảng 2): cột đó là *phương pháp của bài − SAGE*. **Không bài nào trong 5 bài có dòng "chỉ dùng VIS" trên FMB.**
 - → **Chưa bài nào kiểm lại mức SAGE − VIS = +12,1** (Bảng 1 bài SAGE: VIS 49,1 → SAGE 61,2). Số đối chiếu duy nhất hiện có là của nhóm: **+0,8** (SegFormer-B3, 3 seed).
 - Trong bảng của các bài, SAGE chỉ ngang các cách ghép khác: SSVIF đặt SAGE 62,04 cạnh SegMiF 62,14 và CDDFuse 61,64 (không dùng nhãn); CLDyN xếp SAGE thấp nhất trong 11 phương pháp.
-- \* PCDFusion: repo GitHub chỉ công bố 60,05; số SAGE 56,3 lấy từ ghi chú cũ, chưa đối chiếu lại bản bài.
-- \*\* CLDyN: bảng không ghi rõ dataset của cột phân đoạn (bài chỉ nói có đánh giá trên FMB).
+- \* CLDyN: bảng không ghi rõ dataset của cột phân đoạn (bài chỉ nói có đánh giá trên FMB).
 - **Điều nhóm làm thêm mà các bài trên không có:** ghi đủ cấu hình, nhiều seed, khoảng tin cậy, và đối chứng ghép trung bình.
 
 ---
