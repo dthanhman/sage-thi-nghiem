@@ -37,6 +37,7 @@
 
 - ⚠ **Sửa 16/11/2026:** bản trước ghi cột cuối là "SAGE hơn VIS" – **sai**. Đối chiếu bảng gốc từng bài (SSVIF Bảng I, AD-SRF Bảng III, P2Fusion Bảng 2, PCDFusion Bảng 2 và 14, CLDyN Bảng 2): cột đó là *phương pháp của bài − SAGE*. **Không bài nào trong 5 bài có dòng "chỉ dùng VIS" trên FMB.**
 - → **Chưa bài nào kiểm lại mức SAGE − VIS = +12,1** (Bảng 1 bài SAGE: VIS 49,1 → SAGE 61,2). Số đối chiếu duy nhất hiện có là của nhóm: **+0,8** (SegFormer-B3, 3 seed).
+- Cùng là SAGE trên FMB nhưng mIoU dao động **54,9 → 62,0** tùy cấu hình đánh giá (mạng, số lớp, cách train) → cấu hình phải ghi đủ.
 - Trong bảng của các bài, SAGE chỉ ngang các cách ghép khác: SSVIF đặt SAGE 62,04 cạnh SegMiF 62,14 và CDDFuse 61,64 (không dùng nhãn); CLDyN xếp SAGE thấp nhất trong 11 phương pháp.
 - \* CLDyN: bảng không ghi rõ dataset của cột phân đoạn (bài chỉ nói có đánh giá trên FMB).
 - Lời chê SAGE trong các bài trên (lệch IR/VIS, mờ chi tiết) mâu thuẫn nhau và chỉ định tính; E10 bác "mờ biên".
