@@ -21,7 +21,7 @@ code:
 
 data:
   dataset: FMB
-  manifests: data/manifests/{train,dev,test}.csv
+  manifests: data/manifests/{train,dev,test}.csv   # bản sao trong repo này: b3_baseline/manifests/
   train: train.csv + dev.csv gộp = 1.220 ảnh train chính thức   # --gop_dev, không giữ dev
   test: test.csv – 280 ảnh; báo cả 273 ảnh (bỏ 7 ảnh rò, cột leak)
   kaggle_dataset: thanhmn123/fmb-ivif-sage

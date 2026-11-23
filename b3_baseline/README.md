@@ -223,8 +223,8 @@ Vì kết quả lệch bài, nhóm đã kiểm kỹ trước khi kết luận �
 | Cái gì | Ở đâu |
 |---|---|
 | Code (xuất ảnh, train, chấm, tổng hợp, khoảng tin cậy, ca thắng/thua) | [`src/segmentation/`](code/README.md) |
-| Danh sách ảnh (split) | [`data/manifests/`](https://github.com/quan14333/xulianh/tree/main/data/manifests) – đúng 3 file nhóm đang dùng (train 1.045 + dev 175 gộp lại thành 1.220 ảnh train; test 280) |
-| Notebook Kaggle | [`notebooks/man/sage_b3_kaggle.ipynb`](sage_b3_kaggle.ipynb) – một notebook, chọn `BIEN_THE` và `SEED` ở ô đầu |
+| Danh sách ảnh (split) | [`manifests/`](manifests/) – đúng 3 file đã chạy: `train.csv` 1.045 + `dev.csv` 175 (gộp = 1.220 ảnh train chính thức, `--gop_dev`), `test.csv` 280 ảnh test chính thức, cột `leak` = True ở 7 ảnh rò (→ báo thêm 273 ảnh). md5: train `4067555f…`, dev `ba59fecb…`, test `4ad981a8…`. Bản gốc ở repo nhóm [`data/manifests/`](https://github.com/quan14333/xulianh/tree/main/data/manifests) |
+| Notebook Kaggle | [`sage_b3_kaggle.ipynb`](sage_b3_kaggle.ipynb) (vis + sage) và [`sage_b3_kaggle_tb_ir.ipynb`](sage_b3_kaggle_tb_ir.ipynb) (tb + ir) – cùng code, chỉ khác `BIEN_THE`; chọn `SEED` ở ô đầu (bản lưu đang để seed 2) |
 | Kết quả nhỏ của từng run | `runs/<run>/`: `config.json` (cấu hình), `log.csv` (loss theo vòng lặp), `test_ket_qua_last.json` (mIoU 280/273 ảnh), `test_iou_lop_last.csv` (IoU từng lớp) |
 | Bảng tổng hợp | [`tong_hop.csv`](tong_hop.csv), [`tong_hop.txt`](tong_hop.txt) – mọi quy ước mIoU, IoU từng lớp, so với bài |
 | Chênh lệch + khoảng tin cậy | [`so_sanh_b3.txt`](so_sanh_b3.txt) – từng seed, gộp 3 seed, chia tối/vừa/sáng |
