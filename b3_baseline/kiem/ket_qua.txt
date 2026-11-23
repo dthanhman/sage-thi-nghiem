@@ -1,0 +1,13 @@
+bien_the | 273 ảnh s0 s1 s2 | TB 273 | TB 280 | TB 273 nếu bỏ cột đoán 0
+vis | 62.07 62.56 63.02 | 62.55 | 62.23 | 62.87
+ir | 54.66 56.64 57.93 | 56.41 | 56.34 | 56.73
+tb | 64.27 63.91 65.09 | 64.42 | 64.21 | 64.76
+sage | 62.62 63.07 64.42 | 63.37 | 63.20 | 63.68
+Khớp test_ket_qua_last.json ở cả 12 run.
+
+số dòng / ID khác nhau: {'train': (1045, 1045), 'dev': (175, 175), 'test': (280, 280)}
+giao train-dev, train-test, dev-test: 0 0 0
+leak: ['00587', '00588', '00589', '00590', '00631', '00632', '00633']
+số ảnh VIS trùng hệt (md5): 0
+ảnh: 1500 bộ VIS/IR/nhãn, thiếu 0 file, lệch md5 0 file
+checkpoint: khớp 12/12 
